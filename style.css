@@ -56,3 +56,12 @@ header img {
 .loading-image {
     display: none;
 }
+
+.third_line {
+    flex-direction: column;
+}
+
+.btn_wrapper {
+    display: flex;
+
+}
