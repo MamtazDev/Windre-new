@@ -1,172 +1,62 @@
 <!DOCTYPE html>
 <html lang="it">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <div class="container">
-            <img src="./assets/logo.webp" alt="">
-        </div>
+      <div class="container">
+        <img src="./assets/logo.webp" alt="header-logo" />
+      </div>
     </header>
 
     <main>
-        <section class="conversation my-4">
-            <div class="d-flex flex-column gap-1">
-                <div class="first_line d-flex gap-4 align-items-end">
-                    <img class="logo" src="./assets/logo.webp" alt="">
-                    <div class="box">
-                        <p></p>
-                        <img class="loading-image w-25"
-                            src="https://miro.medium.com/v2/resize:fit:1400/1*aQRi1EVQY1hbhQHpKj2umw.gif" alt="Loading">
-                    </div>
-                </div>
-                <div class="second_line d-flex gap-4 align-items-end">
-                    <img class="logo" src="./assets/logo.webp" alt="">
-                    <div class="box">
-                        <p></p>
-                        <img class="loading-image w-25"
-                            src="https://miro.medium.com/v2/resize:fit:1400/1*aQRi1EVQY1hbhQHpKj2umw.gif" alt="Loading">
-                    </div>
-                </div>
-                <div class="third_line button-container">
-                    <div class="btn_wrapper gap-4 mb-1">
-                        <button>Certo! 👍 <br> Dimmi tutto!</button>
-                        <button>No <br> Non ho partita IVA</button>
-                    </div>
-
-                </div>
+      <section class="conversation my-4">
+        <div class="d-flex flex-column gap-1">
+          <div class="first_line d-flex gap-4 align-items-end">
+            <img class="logo" src="./assets/logo.webp" alt="" />
+            <div class="box">
+              <p></p>
+              <img
+                class="loading-image w-25"
+                src="https://miro.medium.com/v2/resize:fit:1400/1*aQRi1EVQY1hbhQHpKj2umw.gif"
+                alt="Loading" />
             </div>
-        </section>
+          </div>
+
+          <div class="second_line d-flex gap-4 align-items-end">
+            <img class="logo" src="./assets/logo.webp" alt="" />
+            <div class="box">
+              <p></p>
+              <img
+                class="loading-image w-25"
+                src="https://miro.medium.com/v2/resize:fit:1400/1*aQRi1EVQY1hbhQHpKj2umw.gif"
+                alt="Loading" />
+            </div>
+          </div>
+
+          <div class="third_line button-container">
+            <div class="btn_wrapper gap-4 mb-1">
+              <button id="certoButton">
+                Certo! 👍 <br />
+                Dimmi tutto!
+              </button>
+              <button class="noPartitaIVAButton">
+                No <br />
+                Non ho partita IVA
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const firstLineBox = document.querySelector('.first_line .box p');
-            const secondLineBox = document.querySelector('.second_line .box p');
-            const loadingImageFirstLine = document.querySelector('.first_line .loading-image');
-            const loadingImageSecondLine = document.querySelector('.second_line .loading-image');
-            const secondLineContainer = document.querySelector('.second_line');
-            const thirdLineContainer = document.querySelector('.third_line');
-            const thirdLineContainerBtn = document.querySelector('.btn_wrapper');
-            let isJustifyContentEndAdded = false;
-
-            function showChatMessage(element, text, loadingImage, delay) {
-                loadingImage.style.display = 'inline';
-
-                setTimeout(function () {
-                    loadingImage.style.display = 'none';
-                    element.textContent = text;
-                }, delay);
-            }
-
-            showChatMessage(firstLineBox, 'Scopri la FIBRA ULTRA VELOCE di WindTre Business: tutto quello di cui il tuo ufficio ha bisogno 💪', loadingImageFirstLine, 0);
-
-            setTimeout(function () {
-                secondLineContainer.style.opacity = 1;
-                showChatMessage(secondLineBox, 'Hai partita IVA?', loadingImageSecondLine, 2000);
-            }, 4000);
-
-            setTimeout(function () {
-                thirdLineContainer.style.opacity = 1;
-
-                const buttons = document.querySelectorAll('.third_line .btn_wrapper button');
-                buttons.forEach(button => {
-                    button.addEventListener('click', function () {
-                        thirdLineContainerBtn.classList.add('justify-content-end');
-
-                        setTimeout(function () {
-                            // Show the first message after button click
-                            const newMessageContainer = document.createElement('div');
-                            newMessageContainer.classList.add('d-flex', 'gap-4', 'align-items-end', 'message-container', 'mb-1');
-                            newMessageContainer.innerHTML = `
-                            <img class="logo" src="./assets/logo.webp" alt="">
-                            <div class="box">
-                                <p></p>
-                                <img class="loading-image w-25" src="https://miro.medium.com/v2/resize:fit:1400/1*aQRi1EVQY1hbhQHpKj2umw.gif" alt="Loading">
-                            </div>
-                        `;
-                            thirdLineContainer.appendChild(newMessageContainer);
-
-                            const newBox = newMessageContainer.querySelector('.box p');
-                            const newLoadingImage = newMessageContainer.querySelector('.loading-image');
-
-                            showChatMessage(newBox, 'Con SUPER OFFICE ONE hai internet e chiamate illimitate con 👇 ▪️ Servizio secure Web per navigare in sicurezza ✔️ Modem Wifi 6 incluso ✔️ Attivazione inclusa', newLoadingImage, 0);
-                        }, 2000);
-
-                        setTimeout(function () {
-                            // Show the second message after the first
-                            const newMessageContainer = document.createElement('div');
-                            newMessageContainer.classList.add('d-flex', 'gap-4', 'align-items-end', 'message-container', 'mb-1');
-                            newMessageContainer.innerHTML = `
-                            <img class="logo" src="./assets/logo.webp" alt="">
-                            <div class="box">
-                                <p></p>
-                                <img class="loading-image w-25" src="https://miro.medium.com/v2/resize:fit:1400/1*aQRi1EVQY1hbhQHpKj2umw.gif" alt="Loading">
-                            </div>
-                        `;
-                            thirdLineContainer.appendChild(newMessageContainer);
-
-                            const newBox = newMessageContainer.querySelector('.box p');
-                            const newLoadingImage = newMessageContainer.querySelector('.loading-image');
-
-                            showChatMessage(newBox, '⏰ Ora in promozione a partire da 20,99 €/mese per i primi due mesi 👉 dal 3°mese 28,99€/mese', newLoadingImage, 0);
-                        }, 4000);
-
-                        setTimeout(function () {
-                            // Show the third message after the second
-                            const newMessageContainer = document.createElement('div');
-                            newMessageContainer.classList.add('d-flex', 'gap-4', 'align-items-end', 'message-container', 'mb-1');
-                            newMessageContainer.innerHTML = `
-                            <img class="logo" src="./assets/logo.webp" alt="">
-                            <div class="box">
-                                <p></p>
-                                <img class="loading-image w-25" src="https://miro.medium.com/v2/resize:fit:1400/1*aQRi1EVQY1hbhQHpKj2umw.gif" alt="Loading">
-                            </div>
-                        `;
-                            thirdLineContainer.appendChild(newMessageContainer);
-
-                            const newBox = newMessageContainer.querySelector('.box p');
-                            const newLoadingImage = newMessageContainer.querySelector('.loading-image');
-
-                            showChatMessage(newBox, 'Verifica subito la copertura nella tua zona con l\'aiuto di un operatore 👇', newLoadingImage, 0);
-
-                            // Show buttons after the third message
-                            setTimeout(function () {
-                                const newButtonsContainer = document.createElement('div');
-                                newButtonsContainer.classList.add('d-flex', 'align-items-center', 'gap-4', 'button-container');
-                                newButtonsContainer.innerHTML = `
-                                <div class="btn_wrapper gap-4">
-                                    <button>📶 Verifica Copertura</button>
-                                    <button>🚀 Attiva ora</button>
-                                    <button>☎️ Chiamata gratuita</button>
-                                </div>
-                               
-                            `;
-                                thirdLineContainer.appendChild(newButtonsContainer);
-                            }, 2000);
-                        }, 6000);
-                    });
-                });
-            }, 8000);
-        });
-    </script>
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-</body>
-
+    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
